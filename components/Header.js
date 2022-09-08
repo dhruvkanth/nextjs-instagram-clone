@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { SearchIcon } from "@heroicons/react/outline";
+import { SearchIcon, PlusCircleIcon } from "@heroicons/react/outline";
+import { HomeIcon } from "@heroicons/react/solid";
 
 const Header = () => {
     return (
@@ -22,7 +23,7 @@ const Header = () => {
                     />
                 </div>
 
-                <div className="relative mt-1">
+                <div className="relative hidden sm:inline-grid mt-1">
                     <div className="absolute top-2 left-2">
                         <SearchIcon className="h-5 text-[#8e8e8e]" />
                     </div>
@@ -33,6 +34,15 @@ const Header = () => {
                     />
                 </div>
 
+                <div className="flex space-x-4 items-center">
+                    <HomeIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
+                    <PlusCircleIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
+                    <img
+                        src="https://render.fineartamerica.com/images/rendered/small/flat/round-beach-towel/images/artworkimages/medium/1/salman-khan-twinkle-mehta.jpg?transparent=0&targetx=0&targety=0&imagewidth=788&imageheight=788&modelwidth=788&modelheight=788&backgroundcolor=A3A992&orientation=0&producttype=beachtowelround&imageid=5104381"
+                        alt="user-image"
+                        className="h-10 rounded-full cursor-pointer"
+                    />
+                </div>
             </div>
         </div>
     )
