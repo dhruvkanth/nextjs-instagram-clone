@@ -1,4 +1,4 @@
-import { DotsHorizontalIcon, HeartIcon, ChatIcon, BookmarkIcon } from "@heroicons/react/outline";
+import { DotsHorizontalIcon, HeartIcon, ChatIcon, BookmarkIcon, EmojiHappyIcon } from "@heroicons/react/outline";
 
 const Post = ({ img, userImg, caption, username, id }) => {
   return (
@@ -19,6 +19,15 @@ const Post = ({ img, userImg, caption, username, id }) => {
         </div>
         <BookmarkIcon className="btn" />
       </div>
+
+      <p className="p-5 truncate"><span className="font-bold mr-2">{username}</span>{caption}</p>
+
+      <form className="flex items-center p-4">
+        <EmojiHappyIcon className="h-7" />
+        <input className="bg-[#000000] border-none flex-1 focus:ring-0" type="text" placeholder="Enter your comment..." />
+        <button className="text-blue-400 font-bold">Post</button>
+      </form>
+
     </div>
   );
 }
