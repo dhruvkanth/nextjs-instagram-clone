@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { SearchIcon } from "@heroicons/react/outline";
 
 const Header = () => {
     return (
@@ -20,6 +21,18 @@ const Header = () => {
                         alt="Instagram Logo"
                     />
                 </div>
+
+                <div className="relative mt-1">
+                    <div className="absolute top-2 left-2">
+                        <SearchIcon className="h-5 text-[#8e8e8e]" />
+                    </div>
+                    <input
+                        type="text"
+                        placeholder="Search"
+                        className="bg-[#262626] pl-10 text-[#8e8e8e] text-sm focus:ring-black focus:border-black rounded-md"
+                    />
+                </div>
+
             </div>
         </div>
     )
