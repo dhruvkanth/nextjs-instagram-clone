@@ -5,7 +5,7 @@ import { HomeIcon } from "@heroicons/react/solid";
 const Header = () => {
     return (
         <div className="shadow-sm border-b sticky top-0 text-white bg-black z-30">
-            <div className="flex items-center justify-between max-w-6xl mx-4 xl:mx-auto">
+            <div className="flex items-center justify-between max-w-6xl mx-4 lg:mx-auto">
                 <div className="cursor-pointer h-24 w-24 relative hidden lg:inline-grid">
                     <Image
                         src="https://www.pngkey.com/png/full/28-287308_instagram-logo-text-white.png"
@@ -35,8 +35,8 @@ const Header = () => {
                 </div>
 
                 <div className="flex space-x-4 items-center">
-                    <HomeIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
-                    <PlusCircleIcon className="hidden md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
+                    <HomeIcon className="md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
+                    <PlusCircleIcon className="md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
                     <img
                         src="https://render.fineartamerica.com/images/rendered/small/flat/round-beach-towel/images/artworkimages/medium/1/salman-khan-twinkle-mehta.jpg?transparent=0&targetx=0&targety=0&imagewidth=788&imageheight=788&modelwidth=788&modelheight=788&backgroundcolor=A3A992&orientation=0&producttype=beachtowelround&imageid=5104381"
                         alt="user-image"
