@@ -1,8 +1,11 @@
 import Image from "next/image";
 import { SearchIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Header = ({ boolean }) => {
+    const { data: session } = useSession();
+
     return (
         <div className="shadow-sm border-b sticky top-0 text-white bg-black z-30">
             <div className="flex items-center justify-between max-w-6xl mx-4 lg:mx-auto">
@@ -18,7 +21,7 @@ const Header = ({ boolean }) => {
                     <Image
                         src="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
                         layout="fill"
-                        className="object-contain"
+                        className="object-contain hvr"
                         alt="Instagram Logo"
                     />
                 </div>
@@ -36,13 +39,20 @@ const Header = ({ boolean }) => {
                 }
 
                 <div className="flex space-x-4 items-center">
-                    <HomeIcon className="md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
-                    <PlusCircleIcon className="md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
-                    <img
-                        src="https://render.fineartamerica.com/images/rendered/small/flat/round-beach-towel/images/artworkimages/medium/1/salman-khan-twinkle-mehta.jpg?transparent=0&targetx=0&targety=0&imagewidth=788&imageheight=788&modelwidth=788&modelheight=788&backgroundcolor=A3A992&orientation=0&producttype=beachtowelround&imageid=5104381"
-                        alt="user-image"
-                        className="h-10 rounded-full cursor-pointer"
-                    />
+                    <HomeIcon className="md:inline-flex h-6 cursor-pointer hvr" />
+                    {session ? (
+                        <>
+                            <PlusCircleIcon className="h-6 cursor-pointer hvr" />
+                            <img
+                                onClick={signOut}
+                                src={session.user.image}
+                                alt="user-image"
+                                className="h-10 rounded-full cursor-pointer"
+                            />
+                        </>
+                    ) : (
+                        <button onClick={signIn} className="hvr">Sign in</button>
+                    )}
                 </div>
             </div>
         </div>
