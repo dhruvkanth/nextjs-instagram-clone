@@ -2,7 +2,7 @@ import Image from "next/image";
 import { SearchIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 
-const Header = () => {
+const Header = ({ boolean }) => {
     return (
         <div className="shadow-sm border-b sticky top-0 text-white bg-black z-30">
             <div className="flex items-center justify-between max-w-6xl mx-4 lg:mx-auto">
@@ -22,17 +22,18 @@ const Header = () => {
                         alt="Instagram Logo"
                     />
                 </div>
-
-                <div className="relative hidden sm:inline-grid mt-1">
-                    <div className="absolute top-2 left-2">
-                        <SearchIcon className="h-5 text-[#8e8e8e]" />
+                {boolean &&
+                    <div className="relative hidden sm:inline-grid mt-1">
+                        <div className="absolute top-2 left-2">
+                            <SearchIcon className="h-5 text-[#8e8e8e]" />
+                        </div>
+                        <input
+                            type="text"
+                            placeholder="Search"
+                            className="bg-[#262626] pl-10 text-[#8e8e8e] text-sm focus:ring-black focus:border-black rounded-md"
+                        />
                     </div>
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        className="bg-[#262626] pl-10 text-[#8e8e8e] text-sm focus:ring-black focus:border-black rounded-md"
-                    />
-                </div>
+                }
 
                 <div className="flex space-x-4 items-center">
                     <HomeIcon className="md:inline-flex h-6 cursor-pointer hover:scale-125 transition-tranform duration-200 ease-out" />
