@@ -2,12 +2,14 @@ import Image from "next/image";
 import { SearchIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import { useSession, signIn, signOut } from "next-auth/react";
-import { useRecoilState } from "recoil"
-import { modalState } from "../atom/modalAtom"
+import { useRecoilState } from "recoil";
+import { modalState } from "../atom/modalAtom";
+import { useRouter } from "next/router";
 
 const Header = ({ boolean }) => {
     const { data: session } = useSession();
     const [open, setOpen] = useRecoilState(modalState);
+    const router = useRouter();
 
     return (
         <div className="shadow-sm border-b sticky top-0 text-white bg-black z-30">
@@ -18,6 +20,7 @@ const Header = ({ boolean }) => {
                         layout="fill"
                         className="object-contain"
                         alt="Instagram Logo"
+                        onClick={() => router.push("/")}
                     />
                 </div>
                 <div className="cursor-pointer h-24 w-10 relative lg:hidden">
@@ -26,6 +29,7 @@ const Header = ({ boolean }) => {
                         layout="fill"
                         className="object-contain hvr"
                         alt="Instagram Logo"
+                        onClick={() => router.push("/")}
                     />
                 </div>
                 {boolean &&
@@ -42,7 +46,7 @@ const Header = ({ boolean }) => {
                 }
 
                 <div className="flex space-x-4 items-center">
-                    <HomeIcon className="md:inline-flex h-6 cursor-pointer hvr" />
+                    <HomeIcon onClick={() => router.push("/")} className="md:inline-flex h-6 cursor-pointer hvr" />
                     {session ? (
                         <>
                             <PlusCircleIcon onClick={() => setOpen(true)} className="h-6 cursor-pointer hvr" />
