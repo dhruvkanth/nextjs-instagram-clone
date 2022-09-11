@@ -12,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header boolean={true} />
+      <Header />
       <Feed />
       <UploadModal />
     </div>
