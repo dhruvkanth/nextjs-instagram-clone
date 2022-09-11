@@ -29,14 +29,14 @@ const Post = ({ img, userImg, caption, username, id }) => {
   }, [db]);
 
   useEffect(() => {
-    setHasLiked(likes.findIndex((like) => like.id === session?.user.name) !== -1);
+    setHasLiked(likes.findIndex((like) => like.id === session?.user.email) !== -1);
   }, [likes]);
 
   async function likePost() {
     if (hasLiked) {
-      await deleteDoc(doc(db, "posts", id, "likes", session.user.name));
+      await deleteDoc(doc(db, "posts", id, "likes", session.user.email));
     } else {
-      await setDoc(doc(db, "posts", id, "likes", session.user.name), {
+      await setDoc(doc(db, "posts", id, "likes", session.user.email), {
         username: session.user.name,
       });
     }
