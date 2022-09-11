@@ -1,4 +1,6 @@
 import Image from "next/image";
+import logo1 from "../assets/logo1.png";
+import logo2 from "../assets/logo2.png";
 import { SearchIcon, PlusCircleIcon } from "@heroicons/react/outline";
 import { HomeIcon } from "@heroicons/react/solid";
 import { useSession, signIn, signOut } from "next-auth/react";
@@ -16,7 +18,7 @@ const Header = ({ boolean }) => {
             <div className="flex items-center justify-between max-w-6xl mx-4 lg:mx-auto">
                 <div className="cursor-pointer h-24 w-24 relative hidden lg:inline-grid">
                     <Image
-                        src="https://www.pngkey.com/png/full/28-287308_instagram-logo-text-white.png"
+                        src={logo2}
                         layout="fill"
                         className="object-contain"
                         alt="Instagram Logo"
@@ -25,7 +27,7 @@ const Header = ({ boolean }) => {
                 </div>
                 <div className="cursor-pointer h-24 w-10 relative lg:hidden">
                     <Image
-                        src="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-white-glyph-900x900.png"
+                        src={logo1}
                         layout="fill"
                         className="object-contain hvr"
                         alt="Instagram Logo"
