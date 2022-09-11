@@ -73,19 +73,17 @@ const Post = ({ img, userImg, caption, username, id }) => {
                 onClick={likePost}
                 className="text-red-400 btn"
               />
-            ) : (
-              <HeartIcon onClick={likePost} className="btn" />
-            )}
+            ) : (<HeartIcon onClick={likePost} className="btn" />)}
             <ChatIcon className="btn" />
           </div>
           <BookmarkIcon className="btn" />
         </div>
       }
 
-      {likes.length > 1 ? (
-        <p className="font-bold mx-5 my-3">{likes.length} likes</p>
-      ) : (
+      {likes.length === 1 ? (
         <p className="font-bold mx-5 my-3">{likes.length} like</p>
+      ) : (
+        <p className="font-bold mx-5 my-3">{likes.length} likes</p>
       )}
 
       <p className="p-5 truncate"><span className="font-bold mr-2">{username}</span>{caption}</p>
