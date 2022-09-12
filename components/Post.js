@@ -4,11 +4,10 @@ import { db } from "../firebase";
 import { DotsHorizontalIcon, HeartIcon, ChatIcon, BookmarkIcon, EmojiHappyIcon } from "@heroicons/react/outline";
 import { HeartIcon as HeartIconFilled } from "@heroicons/react/solid";
 import { addDoc, collection, deleteDoc, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
-import { useSession } from "next-auth/react";
+import { useRecoilState } from "recoil";
+import { userState } from "../atom/userAtom";
 
 const Post = ({ img, userImg, caption, username, id }) => {
-
-  const { data: session } = useSession();
 
   const [comment, setComment] = useState("");
 
@@ -17,6 +16,8 @@ const Post = ({ img, userImg, caption, username, id }) => {
   const [likes, setLikes] = useState([]);
 
   const [hasLiked, setHasLiked] = useState(false);
+
+  const [currentUser] = useRecoilState(userState);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
@@ -29,15 +30,15 @@ const Post = ({ img, userImg, caption, username, id }) => {
   }, [db]);
 
   useEffect(() => {
-    setHasLiked(likes.findIndex((like) => like.id === session?.user.email) !== -1);
+    setHasLiked(likes.findIndex((like) => like.id === currentUser?.email) !== -1);
   }, [likes]);
 
   async function likePost() {
     if (hasLiked) {
-      await deleteDoc(doc(db, "posts", id, "likes", session.user.email));
+      await deleteDoc(doc(db, "posts", id, "likes", currentUser?.email));
     } else {
-      await setDoc(doc(db, "posts", id, "likes", session.user.email), {
-        username: session.user.name,
+      await setDoc(doc(db, "posts", id, "likes", currentUser?.email), {
+        username: currentUser?.name,
       });
     }
   }
@@ -48,8 +49,8 @@ const Post = ({ img, userImg, caption, username, id }) => {
     setComment("");
     await addDoc(collection(db, "posts", id, "comments"), {
       comment: commentToSend,
-      username: session.user.name,
-      userImage: session.user.image,
+      username: currentUser?.name,
+      userImage: currentUser?.userImg,
       timestamp: serverTimestamp(),
     });
   }
@@ -65,7 +66,7 @@ const Post = ({ img, userImg, caption, username, id }) => {
 
       <img className="object-fill w-full" src={img} alt="" />
 
-      {session &&
+      {currentUser &&
         <div className="flex justify-between px-4 py-4">
           <div className="flex space-x-4">
             {hasLiked ? (
@@ -101,7 +102,7 @@ const Post = ({ img, userImg, caption, username, id }) => {
         </div>
       )}
 
-      {session &&
+      {currentUser &&
         <form className="flex items-center p-4">
           <EmojiHappyIcon className="h-7" />
           <input
